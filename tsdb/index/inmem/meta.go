@@ -131,9 +131,11 @@ func (m *Measurement) SeriesIDs() SeriesIDs {
 		return s
 	}
 
+	m.sortedSeriesIDs = m.sortedSeriesIDs[:0]
 	if cap(m.sortedSeriesIDs) < len(m.seriesByID) {
 		m.sortedSeriesIDs = make(SeriesIDs, 0, len(m.seriesByID))
 	}
+
 	for k := range m.seriesByID {
 		m.sortedSeriesIDs = append(m.sortedSeriesIDs, k)
 	}
